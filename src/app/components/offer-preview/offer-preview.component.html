@@ -1,0 +1,48 @@
+<dialog
+  #offerDialog
+  class="offer-dialog"
+  aria-labelledby="offer-title"
+  (click)="$event.target === offerDialog && close()"
+>
+  <button
+    class="icon-button dialog-close"
+    aria-label="Закрыть просмотр"
+    (click)="close()"
+    autofocus
+  >
+    <app-icon name="close" />
+  </button>
+  @if (offer(); as offer) {
+    <span class="eyebrow">Просмотр предложения</span>
+    <h2 id="offer-title">{{ offer.title }}</h2>
+    <p>{{ offer.description }}</p>
+    <dl>
+      <div>
+        <dt>Продавец</dt>
+        <dd>{{ offer.seller.name }}</dd>
+      </div>
+      <div>
+        <dt>Рейтинг</dt>
+        <dd>{{ offer.rating | number: '1.1-1' : 'ru' }} · {{ offer.reviewCount }} отзывов</dd>
+      </div>
+      <div>
+        <dt>Срок выполнения</dt>
+        <dd>{{ offer.deliveryMinutes }} мин</dd>
+      </div>
+      <div>
+        <dt>Стоимость</dt>
+        <dd class="dialog-price">
+          {{ offer.price | currency: 'RUB' : 'symbol' : '1.0-0' : 'ru' }}
+        </dd>
+      </div>
+    </dl>
+    <button
+      class="secondary-button"
+      [attr.aria-pressed]="favorite()"
+      (click)="favoriteToggle.emit(offer.id)"
+    >
+      <app-icon name="heart" />{{ favorite() ? 'Убрать из избранного' : 'В избранное' }}
+    </button>
+    <p class="preview-note">Это демонстрационное предложение. Оформление заказа пока недоступно.</p>
+  }
+</dialog>

@@ -1,0 +1,62 @@
+@use '../../../style/variables' as v;
+.offer-dialog {
+  width: min(540px, calc(100% - 32px));
+  border: 1px solid v.$line;
+  border-radius: 22px;
+  padding: 32px;
+  color: v.$ink;
+  max-height: calc(100dvh - 40px);
+  &::backdrop {
+    background: #151e26a6;
+  }
+  .eyebrow {
+    display: block;
+    margin: 10px 40px 15px 0;
+    color: v.$muted;
+    font-size: 0.6875rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  p {
+    margin-top: 18px;
+    color: v.$muted;
+    font-size: 0.9375rem;
+  }
+  dl {
+    margin-block: 25px;
+  }
+  dl > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid v.$line;
+    font-size: 0.875rem;
+  }
+  dt {
+    color: v.$muted;
+  }
+  dd {
+    margin: 0;
+    text-align: right;
+  }
+  .dialog-price {
+    font-weight: 750;
+    font-size: 1.1rem;
+  }
+  .preview-note {
+    font-size: 0.8125rem;
+  }
+}
+.dialog-close {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+@media (max-width: v.$mobile) {
+  .offer-dialog {
+    padding: 23px;
+  }
+}

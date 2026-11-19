@@ -1,0 +1,126 @@
+@use '../../../../style/variables' as v;
+.categories-section {
+  padding-block: 32px 39px;
+}
+.categories {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 5px 17px;
+  background: v.$surface;
+  border: 1px solid v.$line;
+  border-radius: 14px;
+  transition: border-color 0.15s;
+  > span:nth-child(2) {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-top: 13px;
+    white-space: nowrap;
+  }
+  small {
+    font-size: 0.6875rem;
+    color: v.$muted;
+    margin-top: 3px;
+  }
+  &:hover,
+  &.active {
+    border-color: #8aab58;
+    background: #f5faed;
+  }
+}
+.category-icon {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #eaf2e1;
+  color: #536d38;
+  app-icon {
+    width: 25px;
+    height: 25px;
+  }
+  &.tone-1,
+  &.tone-5 {
+    background: #eee9f8;
+    color: #776198;
+  }
+  &.tone-2,
+  &.tone-6 {
+    background: #fff0dc;
+    color: #987436;
+  }
+  &.tone-3,
+  &.tone-7 {
+    background: #e5edf8;
+    color: #5476a4;
+  }
+  &.tone-4 {
+    background: #f9e7ea;
+    color: #a06672;
+  }
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 23px;
+  h2 {
+    font-size: 1.625rem;
+    letter-spacing: -0.035em;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8125rem;
+    color: v.$muted;
+    app-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+@media (max-width: v.$compact) {
+  .categories {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: v.$mobile) {
+  .categories-section {
+    padding-block: 26px 30px;
+  }
+  .categories {
+    gap: 8px;
+  }
+  .category {
+    padding: 14px 2px;
+    > span:nth-child(2) {
+      font-size: 0.6875rem;
+      white-space: normal;
+      line-height: 1.25;
+      min-height: 27px;
+      margin-top: 10px;
+    }
+    small {
+      display: none;
+    }
+  }
+  .category-icon {
+    width: 38px;
+    height: 38px;
+  }
+  .section-heading h2 {
+    font-size: 1.3rem;
+  }
+  .section-heading a {
+    font-size: 0.75rem;
+    gap: 4px;
+  }
+}

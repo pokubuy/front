@@ -1,0 +1,68 @@
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header id="top">
+  <div class="utility-bar container">
+    <span>Маркетплейс цифровых товаров и услуг</span>
+    <nav aria-label="Информация">
+      <a href="#top">Как это работает</a><a href="#seller">Для продавцов</a
+      ><span class="locale">RU · ₽</span>
+    </nav>
+  </div>
+  <div class="main-bar container">
+    <a class="brand" href="/" aria-label="Pokubuy — главная"
+      ><span class="brand-mark"><app-icon name="bag" /></span>poku<span class="brand-end">buy</span
+      ><span class="brand-dot">.</span></a
+    >
+    <a class="catalog-button primary-button" href="#categories"
+      ><app-icon name="grid" /><span>Каталог</span></a
+    >
+    <form
+      class="search"
+      role="search"
+      action="#catalog"
+      (submit)="$event.preventDefault(); searchSubmit.emit()"
+    >
+      <app-icon name="search" />
+      <input
+        aria-label="Поиск товаров и услуг"
+        type="search"
+        placeholder="Найти игру, подписку или услугу"
+        [value]="search()"
+        (input)="updateSearch($event)"
+      />
+      <kbd aria-hidden="true">Поиск</kbd>
+    </form>
+    <button
+      class="favorites icon-button"
+      type="button"
+      [class.active]="favoritesActive()"
+      [attr.aria-pressed]="favoritesActive()"
+      [attr.aria-label]="'Избранное: ' + favoriteCount()"
+      (click)="favoritesToggle.emit()"
+    >
+      <app-icon name="heart" />
+      @if (favoriteCount()) {
+        <span class="count">{{ favoriteCount() }}</span>
+      }
+    </button>
+    @if (session.authenticated()) {
+      <div class="account">
+        <span class="account-name" [title]="session.displayName()">{{
+          session.displayName()
+        }}</span>
+        <button
+          class="icon-button logout"
+          type="button"
+          aria-label="Выйти из аккаунта"
+          title="Выйти из аккаунта"
+          (click)="session.clear()"
+        >
+          <app-icon name="logout" />
+        </button>
+      </div>
+    } @else {
+      <a class="login secondary-button" routerLink="/auth/login"
+        ><app-icon name="user" /><span>Войти</span></a
+      >
+    }
+  </div>
+</header>

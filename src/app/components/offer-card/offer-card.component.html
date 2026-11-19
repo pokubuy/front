@@ -1,0 +1,45 @@
+<article class="card">
+  <div class="cover">
+    <button
+      class="cover-link"
+      (click)="openOffer.emit(offer())"
+      [attr.aria-label]="'Подробнее: ' + offer().title"
+    >
+      @if (priority()) {
+        <img [ngSrc]="offer().image" width="400" height="240" priority alt="" />
+      } @else {
+        <img [ngSrc]="offer().image" width="400" height="240" alt="" />
+      }
+      <span class="cover-caption">{{ offer().platform }}</span>
+      <span class="cover-note">DIGITAL COLLECTION</span>
+    </button>
+    <span class="delivery"><app-icon name="bolt" />{{ offer().deliveryMinutes }} мин</span>
+    <button
+      class="favorite"
+      [class.selected]="favorite()"
+      [attr.aria-pressed]="favorite()"
+      [attr.aria-label]="(favorite() ? 'Убрать из избранного: ' : 'В избранное: ') + offer().title"
+      (click)="favoriteToggle.emit(offer().id)"
+    >
+      <app-icon name="heart" />
+    </button>
+  </div>
+  <div class="content">
+    <div class="seller">
+      <span class="avatar">{{ offer().seller.name.slice(-2).toUpperCase() }}</span>
+      <span>{{ offer().seller.name }}</span>
+    </div>
+    <h3>
+      <button (click)="openOffer.emit(offer())">{{ offer().title }}</button>
+    </h3>
+    <div class="rating">
+      <app-icon name="star" /><strong>{{ offer().rating | number: '1.1-1' : 'ru' }}</strong
+      ><span>({{ offer().reviewCount | number: '1.0-0' : 'ru' }})</span>
+    </div>
+    <div class="card-bottom">
+      <strong>{{ offer().price | currency: 'RUB' : 'symbol' : '1.0-0' : 'ru' }}</strong><span
+        >за предложение</span
+      >
+    </div>
+  </div>
+</article>

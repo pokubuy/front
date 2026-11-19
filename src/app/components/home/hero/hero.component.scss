@@ -1,0 +1,253 @@
+@use '../../../../style/variables' as v;
+:host {
+  display: block;
+}
+.hero {
+  min-height: 360px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  overflow: hidden;
+  border-radius: 24px;
+  color: white;
+  background: #202729;
+  position: relative;
+}
+.hero-copy {
+  padding: 39px 0 40px 46px;
+  position: relative;
+  z-index: 1;
+}
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: #d5dcd8;
+  span {
+    width: 6px;
+    height: 6px;
+    background: v.$accent;
+    border-radius: 50%;
+  }
+}
+h1 {
+  font-size: clamp(2rem, 3.7vw, 3.25rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+  margin: 19px 0 16px;
+  em {
+    color: v.$accent;
+    font-style: normal;
+  }
+}
+.hero-copy p {
+  color: #bdc5c1;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+.primary-button {
+  color: v.$ink;
+  margin-top: 25px;
+}
+.hero-art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  background: radial-gradient(ellipse at 55% 45%, #6a833b60, transparent 65%);
+  img {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    height: auto;
+    transform: rotate(-10deg);
+  }
+}
+.orbit {
+  position: absolute;
+  width: 370px;
+  height: 370px;
+  border: 1px solid #87967b30;
+  border-radius: 50%;
+}
+.orbit-two {
+  width: 510px;
+  height: 510px;
+}
+.floating-tag {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 13px;
+  padding: 12px 17px;
+  background: #3c4440;
+  border: 1px solid #64715b;
+  font-size: 0.875rem;
+  box-shadow: 0 12px 24px #1115;
+}
+.tag-top {
+  top: 43px;
+  right: 48px;
+  transform: rotate(9deg);
+  app-icon {
+    color: v.$accent;
+  }
+}
+.tag-bottom {
+  bottom: 44px;
+  left: 18px;
+  transform: rotate(-5deg);
+  small {
+    display: block;
+    color: #c0cbb9;
+    font-size: 0.6875rem;
+    margin-top: 2px;
+  }
+}
+.tag-icon {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 9px;
+  color: v.$ink;
+  background: v.$accent;
+}
+.art-cross {
+  position: absolute;
+  color: v.$accent;
+  font-weight: 300;
+  font-size: 32px;
+}
+.cross-one {
+  top: 24px;
+  left: 40px;
+}
+.cross-two {
+  right: 50px;
+  bottom: 48px;
+}
+.art-caption {
+  position: absolute;
+  right: 43px;
+  bottom: 25px;
+  color: #a2b294;
+  letter-spacing: 0.24em;
+  font-size: 0.5625rem;
+}
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 27px 10px 30px;
+  border-bottom: 1px solid v.$line;
+  gap: 28px;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+  }
+  p {
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  small {
+    display: block;
+    color: v.$muted;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    margin-top: 3px;
+  }
+}
+.benefit-icon {
+  display: grid;
+  place-items: center;
+  background: #edf1e7;
+  border-radius: 12px;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  color: #516b3a;
+}
+@media (max-width: v.$compact) {
+  .hero-copy {
+    padding-left: 30px;
+  }
+  .hero-art img {
+    width: 100%;
+  }
+  .tag-top {
+    right: 20px;
+  }
+  .tag-bottom {
+    left: 0;
+  }
+  .benefits {
+    gap: 14px;
+    padding-inline: 0;
+  }
+}
+@media (max-width: v.$mobile) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-copy {
+    padding: 29px 25px 0;
+  }
+  h1 {
+    font-size: clamp(1.65rem, 7.5vw, 2rem);
+  }
+  .hero-art {
+    height: 220px;
+    margin-top: -8px;
+    img {
+      width: 290px;
+    }
+  }
+  .hero-label {
+    font-size: 0.75rem;
+  }
+  .tag-top {
+    top: 15px;
+    right: 20px;
+    font-size: 0.75rem;
+    padding: 8px 11px;
+  }
+  .tag-bottom {
+    left: 18px;
+    bottom: 13px;
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  .orbit {
+    width: 260px;
+    height: 260px;
+  }
+  .orbit-two {
+    width: 360px;
+    height: 360px;
+  }
+  .cross-one {
+    left: 30px;
+    top: 40px;
+  }
+  .art-caption {
+    right: 18px;
+    bottom: 10px;
+  }
+  .benefits {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 23px 9px;
+    > div {
+      justify-content: start;
+    }
+    small {
+      font-size: 0.8125rem;
+    }
+  }
+}

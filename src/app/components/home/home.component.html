@@ -1,0 +1,96 @@
+<app-site-header
+  [search]="search()"
+  [favoriteCount]="favoriteIds().length"
+  [favoritesActive]="favoritesOnly()"
+  (searchChange)="setSearch($event)"
+  (searchSubmit)="scrollToCatalog()"
+  (favoritesToggle)="toggleFavoritesView()"
+/>
+<main id="main" class="container">
+  <app-home-hero />
+  <app-home-categories
+    [categories]="categories()"
+    [categoryId]="categoryId()"
+    (categoryChange)="selectCategory($event)"
+  />
+  <section #catalogSection class="catalog" id="catalog" aria-labelledby="catalog-title">
+    <div class="section-heading catalog-heading">
+      <div>
+        <span class="eyebrow">Твой выбор начинается здесь</span>
+        <h2 id="catalog-title">
+          {{ heading() }}<span class="result-count" aria-live="polite">{{ page().total }}</span>
+        </h2>
+      </div>
+      <p>Большие планы. Маленькие покупки.</p>
+    </div>
+    <div class="catalog-toolbar">
+      <div class="tabs" aria-label="Подборка предложений">
+        <button
+          [class.active]="!favoritesOnly()"
+          [attr.aria-pressed]="!favoritesOnly()"
+          (click)="favoritesOnly.set(false); limit.set(12)"
+        >
+          Все предложения</button
+        ><button
+          [class.active]="favoritesOnly()"
+          [attr.aria-pressed]="favoritesOnly()"
+          (click)="favoritesOnly.set(true); limit.set(12)"
+        >
+          <app-icon name="heart" /> Избранное
+          @if (favoriteIds().length) {
+            <span>{{ favoriteIds().length }}</span>
+          }
+        </button>
+      </div>
+      <label class="sort"
+        ><app-icon name="sort" /><span class="sr-only">Сортировка</span
+        ><select [value]="sort()" (change)="changeSort($event)">
+          <option value="popular">По популярности</option>
+          <option value="rating">По рейтингу и отзывам</option>
+          <option value="price-asc">Сначала дешевле</option>
+          <option value="price-desc">Сначала дороже</option>
+          <option value="newest">Сначала новые</option>
+        </select></label
+      >
+    </div>
+    @if (page().items.length) {
+      <div class="offer-grid">
+        @for (offer of page().items; track offer.id) {
+          <app-offer-card
+            [offer]="offer"
+            [priority]="$index < 4"
+            [favorite]="favoriteIds().includes(offer.id)"
+            (favoriteToggle)="toggleFavorite($event)"
+            (openOffer)="openOffer($event)"
+          />
+        }
+      </div>
+      @if (page().items.length < page().total) {
+        <button class="load-more secondary-button" (click)="showMore()">
+          Показать ещё <app-icon name="plus" />
+        </button>
+      }
+      <p class="shown">Показано {{ page().items.length }} из {{ page().total }}</p>
+    } @else {
+      <div class="empty-state">
+        <app-icon [name]="favoritesOnly() ? 'heart' : 'search'" />
+        <h3>{{ favoritesOnly() ? 'Сохрани то, что понравилось' : 'Пока ничего не нашлось' }}</h3>
+        <p>
+          {{
+            favoritesOnly()
+              ? 'Нажми на сердечко в карточке, чтобы добавить предложение в избранное.'
+              : 'Попробуй другой запрос или выбери другую категорию.'
+          }}
+        </p>
+        <button class="primary-button" (click)="resetCatalog()">Посмотреть все предложения</button>
+      </div>
+    }
+  </section>
+  <app-seller-banner />
+</main>
+<app-site-footer />
+<app-offer-preview
+  [offer]="selectedOffer()"
+  [favorite]="favoriteIds().includes(selectedOffer()?.id ?? '')"
+  (favoriteToggle)="toggleFavorite($event)"
+/>

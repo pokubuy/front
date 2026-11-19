@@ -1,0 +1,21 @@
+<section class="categories-section" id="categories" aria-labelledby="categories-title">
+  <div class="section-heading">
+    <h2 id="categories-title">Что ищем сегодня?</h2>
+    <a href="#catalog" (click)="categoryChange.emit('')">Весь каталог <app-icon name="grid" /></a>
+  </div>
+  <div class="categories">
+    @for (category of categories(); track category.id) {
+      <button
+        class="category"
+        [class.active]="categoryId() === category.id"
+        [attr.aria-pressed]="categoryId() === category.id"
+        (click)="categoryChange.emit(categoryId() === category.id ? '' : category.id)"
+      >
+        <span class="category-icon" [class]="'category-icon tone-' + $index"
+          ><app-icon [name]="category.icon"
+        /></span>
+        <span>{{ category.name }}</span><small>{{ category.offerCount }} предложения</small>
+      </button>
+    }
+  </div>
+</section>

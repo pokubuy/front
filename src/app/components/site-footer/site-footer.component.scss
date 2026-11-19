@@ -1,0 +1,56 @@
+@use '../../../style/variables' as v;
+footer {
+  border-top: 1px solid v.$line;
+  background: white;
+}
+.footer-content {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 0.75rem;
+  color: v.$muted;
+  nav {
+    display: flex;
+    gap: 22px;
+    margin-left: auto;
+  }
+}
+.footer-brand {
+  color: v.$ink;
+  font-size: 23px;
+  letter-spacing: -1px;
+  font-weight: 700;
+  span {
+    color: v.$green;
+  }
+}
+.copyright {
+  margin-left: 15px;
+}
+@media (max-width: v.$compact) {
+  .footer-content {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-block: 25px;
+    nav {
+      margin-left: 0;
+    }
+  }
+}
+@media (max-width: v.$mobile) {
+  .footer-content {
+    gap: 12px;
+    p {
+      margin-left: auto;
+    }
+    nav {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  }
+  .copyright {
+    margin: 0;
+  }
+}

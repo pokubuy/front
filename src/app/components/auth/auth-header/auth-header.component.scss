@@ -1,0 +1,71 @@
+@use '../../../../style/variables' as v;
+.auth-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 27px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  color: v.$ink;
+  font-size: 29px;
+  letter-spacing: -1.5px;
+  font-weight: 800;
+  > span:not(.brand-mark) {
+    font-weight: 450;
+  }
+  b {
+    color: v.$green;
+  }
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 41px;
+  margin-right: 9px;
+  border-radius: 12px;
+  background: v.$accent;
+  transform: rotate(-7deg);
+  app-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: v.$muted;
+  &:hover {
+    color: v.$ink;
+  }
+  app-icon {
+    width: 17px;
+    height: 17px;
+  }
+}
+@media (max-width: 800px) {
+  .auth-header {
+    padding-block: 21px;
+  }
+}
+@media (max-width: v.$mobile) {
+  .brand {
+    font-size: 25px;
+  }
+  .brand-mark {
+    width: 32px;
+    height: 35px;
+  }
+  .back-link {
+    font-size: 0.75rem;
+    gap: 5px;
+    app-icon {
+      display: none;
+    }
+  }
+}

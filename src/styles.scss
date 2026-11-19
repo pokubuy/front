@@ -1,1 +1,151 @@
-/* You can add global styles to this file, and also import other style files */
+@use './style/variables' as v;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+body {
+  margin: 0;
+  background: v.$canvas;
+  color: v.$ink;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+a {
+  touch-action: manipulation;
+}
+button {
+  cursor: pointer;
+  color: inherit;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,
+svg {
+  max-width: 100%;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid v.$green;
+  outline-offset: 4px;
+}
+::selection {
+  background: v.$accent;
+  color: v.$ink;
+}
+.container {
+  width: min(100% - 64px, v.$content-width);
+  margin-inline: auto;
+}
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 11px 22px;
+  border: 0;
+  border-radius: 11px;
+  font-size: 0.9375rem;
+  font-weight: 650;
+}
+.primary-button {
+  background: v.$accent;
+  &:hover:not(:disabled) {
+    background: v.$accent-hover;
+  }
+}
+.secondary-button {
+  background: #eef0f2;
+  &:hover:not(:disabled) {
+    background: #e4e8eb;
+  }
+}
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid v.$line;
+  border-radius: 12px;
+  background: v.$surface;
+}
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 10;
+  padding: 12px;
+  background: v.$accent;
+  &:focus {
+    top: 12px;
+  }
+}
+@media (max-width: v.$mobile) {
+  .container {
+    width: calc(100% - 32px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
